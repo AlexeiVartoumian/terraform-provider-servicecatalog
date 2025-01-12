@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 
+	//"github.com/aws/aws-sdk-go-v2/service/cloudformation"
 	"github.com/aws/aws-sdk-go-v2/service/servicecatalogappregistry"
 	awstypes "github.com/aws/aws-sdk-go-v2/service/servicecatalogappregistry/types"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
@@ -15,6 +16,7 @@ import (
 
 type AppRegistryResourceAssociation struct {
 	client *servicecatalogappregistry.Client
+	//cfClient *cloudformation.Client
 }
 
 // AppregistryResource Assocation model describes the resource data model
@@ -194,6 +196,7 @@ func (r *AppRegistryResourceAssociation) Delete(ctx context.Context, req resourc
 	if resp.Diagnostics.HasError() {
 		return
 	}
+
 	applicationArn := state.ApplicationArn.ValueString()
 	resourceName := state.ResourceName.ValueString()
 	resourceType := state.ResourceType.ValueString()
