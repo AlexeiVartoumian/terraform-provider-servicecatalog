@@ -196,10 +196,12 @@ func (r *AppRegistryResourceAssociation) Delete(ctx context.Context, req resourc
 	}
 	applicationArn := state.ApplicationArn.ValueString()
 	resourceName := state.ResourceName.ValueString()
+	resourceType := state.ResourceType.ValueString()
 
 	input := &servicecatalogappregistry.DisassociateResourceInput{
-		Application: &applicationArn,
-		Resource:    &resourceName,
+		Application:  &applicationArn,
+		Resource:     &resourceName,
+		ResourceType: awstypes.ResourceType(resourceType),
 	}
 	_, err := r.client.DisassociateResource(ctx, input)
 	if err != nil {
