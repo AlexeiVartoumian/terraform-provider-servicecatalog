@@ -45,3 +45,5 @@ func main() {
 		log.Fatal(err.Error())
 	}
 }
+
+//release with semantinc versionsing
